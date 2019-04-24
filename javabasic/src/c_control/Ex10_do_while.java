@@ -16,8 +16,6 @@ import java.util.Scanner;
 		       명령문
 		}while(false);      ==> 조건비교를 나중에 하기 때문에, false이든 조건을 신경 쓰지 않고, 일단 한번을 실행함.
 
-
-
 */
 
 
