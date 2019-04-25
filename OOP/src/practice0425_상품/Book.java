@@ -1,5 +1,7 @@
 package practice0425_상품;
 
+//Product의 자식클래스, ConversationBook의 부모클래스
+
 public class Book extends Product {
 	int isbn;
 	String autor;
@@ -15,6 +17,7 @@ public class Book extends Product {
 		this.isbn=isbn;
 		
 	}
+
 
 	public void showInfo() {
 		System.out.println("상품id>>"+id);

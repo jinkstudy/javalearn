@@ -1,5 +1,7 @@
 package practice0425_상품;
 
+
+// 부모클래스. 
 public class Product {
 	
 	int id;
@@ -16,6 +18,7 @@ public class Product {
 		this.producer = producer;
 		this.price = price;
 	}
+	
 	
 	public void showInfo() {
 		
