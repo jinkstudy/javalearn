@@ -12,6 +12,19 @@ public class Student {
 	private int total;
 	private double avg;
 	
+	//생성자 만들기
+	public Student(){
+		this("무명",50,50,50); //오버로딩된 생성자 함수를 불러옴.
+	}
+	
+	//생성자 오버로딩
+	public Student(String name,int kor, int eng, int math){
+		this.name = name;
+		this.kor = kor;
+		this.eng = eng;
+		this.math = math;
+	}
+	
 	int calTotal() {
 		total= kor + eng +math;
 		return total;
