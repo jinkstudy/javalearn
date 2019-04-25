@@ -1,5 +1,5 @@
 package h_inherit_book;
-
+import h_inherit_book.sub.Item;
 public class Dvd extends Item {
 
 	String actor;
