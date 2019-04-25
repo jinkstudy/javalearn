@@ -4,10 +4,10 @@ package practice0425_상품;
 // 부모클래스. 
 public class Product {
 	
-	int id;
-	String guide;
-	String producer;
-	int price;
+	protected int id;
+	protected String guide;
+	protected String producer;
+	protected int price;
 	
 	public Product(){
 		
@@ -23,6 +23,7 @@ public class Product {
 	public void showInfo() {
 		
 	}
+
 	
 	
 	

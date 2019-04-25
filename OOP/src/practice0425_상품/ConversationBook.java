@@ -1,5 +1,7 @@
 package practice0425_상품;
 
+//Book의 자식클래스
+
 public class ConversationBook extends Book {
 	String lang;
 	public ConversationBook(){

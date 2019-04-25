@@ -3,9 +3,9 @@ package practice0425_상품;
 //Product의 자식클래스, ConversationBook의 부모클래스
 
 public class Book extends Product {
-	int isbn;
-	String autor;
-	String booktitle;
+	protected int isbn;
+	protected String autor;
+	protected String booktitle;
 	
 	public Book(){
 		super();
