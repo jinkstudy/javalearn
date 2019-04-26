@@ -1,0 +1,21 @@
+
+
+interface B{ //추상클래스랑 비슷.... 연결만 하고 일은 하지는 않음. 표준화 하기 위해서. ex) DB/Event처리.
+	int B; // public static final
+ 	void B(); // public abstract
+}
+class BB implements B{  // interface를 물려받으려면 extends 대신 implements를 쓴다.
+	void B(){} ---> 무조건 오버라이딩...
+}	
+
+
+abstract class A{
+	int A;
+	A(){}
+	void A(){}
+	abstract void AA();
+}
+
+class B extends A{
+	void AA(){}
+}		

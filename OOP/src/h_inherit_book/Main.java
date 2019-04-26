@@ -14,6 +14,7 @@ public class Main {
 //		b2.output();
 		
 		Item i = null;
+		//Item i = new Item(); // Item 즉 부모클래스가 abstract 인 경우, 미완성클래스이기 때문에 부모클래스로 객체 생성할 수 없음.
 		
 		System.out.println("항목을 선택하세요(1.Book 2.Dvd 3.Cd)-->");
 		

@@ -2,15 +2,15 @@ package practice0425_상품;
 
 
 // 부모클래스. 
-public class Product {
-	
+public abstract class Product {
+
 	protected int id;
 	protected String guide;
 	protected String producer;
 	protected int price;
-	
+
 	public Product(){
-		
+
 	}
 	public Product(int id, String guide, String producer, int price){
 		this.id=id;
@@ -18,14 +18,8 @@ public class Product {
 		this.producer = producer;
 		this.price = price;
 	}
-	
-	
-	public void showInfo() {
-		
-	}
 
-	
-	
-	
 
+	public abstract void showInfo();
+	
 }
