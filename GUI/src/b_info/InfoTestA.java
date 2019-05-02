@@ -3,6 +3,7 @@ package b_info;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.*;
@@ -110,12 +111,13 @@ public class InfoTestA {
 
 	}
 
-	class IdFocus implements FocusListener{
+	//class IdFocus implements FocusListener{
+	class IdFocus extends FocusAdapter{
 
-
-		public void focusGained(FocusEvent arg0) {
-
-		}
+//		public void focusGained(FocusEvent arg0) {
+// 			FocusListener 인터페이스를 상속받은 경우는 꼭 오버라이딩 해줘야 했지만,
+//			FocusAdapter를 상속받는 것으로 변경하면 불필요 메시지 오버라이딩 하지 않았도 된다.
+//		}
 
 
 		public void focusLost(FocusEvent arg0) {

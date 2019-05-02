@@ -42,6 +42,7 @@ public class TestA extends JFrame {
 		
 		
 	}
+	
 	// 1.이벤트 핸들러 만들기
 	class MyEvent implements ActionListener{
 

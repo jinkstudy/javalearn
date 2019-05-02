@@ -2,6 +2,8 @@ package b_info;
 
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.*;
+
 
 public class InfoTestB {
 	// 1. 멤버변수 선언
@@ -76,17 +78,36 @@ public class InfoTestB {
 		
 		f.setSize(700, 580);
 		f.setVisible(true);
+
+	}
+	
+	//이벤트 연결(등록)
+	void eventProc() {
+		MyHdlr mh = new MyHdlr(); //핸들러 만들고 올려놓기.--> 연결.
 		
+		bExit.addMouseListener(mh);
+		
+	}
+	
+	//class MyHdlr implements MouseListener{ // MouseListener가  interface라서 불필요한 method를 모두 오버라이딩 해야하는 귀찮음을 해결하기 위해서
+	class MyHdlr extends MouseAdapter{  // Class인 MouseAdapter를 상속받아서 사용.
+		
+		public void mouseClicked(MouseEvent e) {
+			Object obj = e.getSource();
+			if(obj == bExit) {
+				System.exit(0);
+			}	
+		}
 
 		
 		
 	}
-	
 
 	public static void main(String[] args) {
 		
 		InfoTestB it = new InfoTestB();
 		it.addLayout();
+		it.eventProc();
 		
 	
 

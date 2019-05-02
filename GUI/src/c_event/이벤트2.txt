@@ -1,0 +1,30 @@
+
+interface AAListener{
+
+	void a();
+	void b();
+	void c();
+}
+
+class AAAdapter implements AAListener{
+	//a() ,b(),c() 이미 모두 오버라이딩
+		public void a(){ }
+		public void b(){ }
+		public void c(){ }
+}
+
+class MyHdlr extends AAAdapter{  AAAdapter가 미리 Listener의 메소드를 모두 오버라이딩을 해서 
+								메소드가 2개이상인 경우 AAListener를 사용하는 대신 AAAdapter를 사용하면 편리
+								이때 주의할 것은, class의 경우 오버라이딩의 강제성이 없기 때문에 오타 또는 오버라이딩 누락의 위험이 있기때문에
+								AAListener를 먼저 구현한다음에 필요한 메소드를 확인한 후 adapter를 사용하는 것을 권장함.
+	public void a(){ }
+}
+class MyHdlr implements AAListener{
+
+	//a() ,b(),c() 모두 오버라이딩
+	public void a(){}
+	public void b(){}
+	public void c(){}
+	
+}	
+
