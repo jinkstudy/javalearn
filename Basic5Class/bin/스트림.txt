@@ -1,0 +1,24 @@
+* Java IO (Input Output) - 파일 입출력
+
+	입출력  - Stream
+		- java.io ��Ű��
+	
+	
+	1. byte스트림
+		- InputStream - FileInputStream
+		- OutputStream - FileOutputStream
+		
+		+필터스트림
+			'DataOutputStream - DataInputStream
+			' ObjectOutputStream - ObjectInputStream (* 직렬화 필수)
+		 
+	2. char 스트림
+		- Reader : FileReader
+		- Writer : FileWriter
+	
+	
+	cf. RandomAccessFile : 입출력 스트림
+	
+		
+	
+	 

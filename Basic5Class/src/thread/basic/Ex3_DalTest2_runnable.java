@@ -3,25 +3,25 @@ import java.awt.*;
 import javax.swing.*;
 
 
-public class Ex3_DalTest extends Frame {
+public class Ex3_DalTest2_runnable extends Frame {
 	
-	Dal a, b, c;
+	Dal1 a, b, c;
 	
-	public Ex3_DalTest()
+	public Ex3_DalTest2_runnable()
 	{
 		setSize( 500, 400 );
 		setVisible( true );
 
-		a = new Dal(this, 0, 50);
-		b = new Dal(this, 0, 100);
-		c = new Dal(this, 0, 150);
+		a = new Dal1(this, 0, 50);
+		b = new Dal1(this, 0, 100);
+		c = new Dal1(this, 0, 150);
 		
 		// # 
 		// 각 객체의 쓰레드 메소드(run) 호출한다 
-
-		a.start();
-		b.start();
-		c.start();
+		
+		new Thread(a).start();
+		new Thread(b).start();
+		new Thread(c).start();
 	}	
 	
 
@@ -41,7 +41,7 @@ public class Ex3_DalTest extends Frame {
 
 	public static void main(String args[] )
 	{
-		Ex3_DalTest dal = new Ex3_DalTest();	
+		Ex3_DalTest2_runnable dal1 = new Ex3_DalTest2_runnable();	
 	}
 
 }
@@ -57,13 +57,13 @@ public class Ex3_DalTest extends Frame {
 	- 임의의 수만큼 잠시 쓰레드를 블럭한다
 	# 위의 작업을 반복한다
 */
-class Dal extends Thread
+class Dal1 implements Runnable
 {
 	int x, y;
 	int speed;
 	Frame app;
 	
-	public Dal( Frame _app, int _x, int _y )
+	public Dal1( Frame _app, int _x, int _y )
 	{
 		app = _app;
 		x = _x;
@@ -81,7 +81,6 @@ class Dal extends Thread
 				Thread.sleep(speed*100);
 			} catch (InterruptedException e) {}
 			
-
 			
 		}
 

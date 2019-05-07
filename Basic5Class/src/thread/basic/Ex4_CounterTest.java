@@ -40,9 +40,37 @@ public class Ex4_CounterTest extends JFrame{
             	
                 // 1- 카운트 다운을 시작하는 스레드 
                 
+            	new Thread(new Runnable() { //Runnable을 구현한 이름없는 Class를 구현하면서 overriding까지 하면서 바로 구현.
+
+					public void run() {
+						for (int i = 10; i >0; i--) {
+							if(inputChk) { //input이 들어왔을때 thread를 멈추도록.
+								lb.setText("빙고");
+								inputChk =false;
+								return;
+							}
+							lb.setText(String.valueOf(i));
+							try {
+								Thread.sleep(1000);
+							} catch (Exception e) {}				
+							
+						}					
+					}
+            		
+            	}).start();
+            	
             	
                 // 2- 입력값을 받아서 JTextArea에 붙이는 작업 
-                
+                new Thread(new Runnable() {
+                	public void run() {
+                		
+                		inputChk=true;
+                		
+                			String input = JOptionPane.showInputDialog("값을 입력"); //JOptionPane --> 입력 받는 창 띄우기. 
+                    		ta.append(input);
+                    
+                	}
+                }).start();
    
             }
         });

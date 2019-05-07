@@ -3,21 +3,35 @@ package thread.basic;
 class Bread 
 {
 	String bread;
+	boolean isCheck = false;
 
 	//##  	
 
 	public void setBread( String bread )
 	{
 		this.bread = bread;
-		//## 		
-	
-
+		//##
+		
+		isCheck = true;
+		
+		synchronized(bread) {
+			notifyAll();
+		}
 	}	
 
 	public String getBread()
 	{
 		//## 		
-
+		if(isCheck==false) {
+			try {
+				synchronized(bread) {
+					wait(); // setBread가 불러질 때까지 block에 대기하도록.
+				}
+				
+			} catch (InterruptedException e) {
+		
+			}
+		}
 		return bread;
 	}
 }
@@ -33,6 +47,7 @@ class Baker extends Thread
 	public void run()
 	{
 		bbang.setBread("진열된 완성된 맛있는 빵");
+		
 	}
 }
 
