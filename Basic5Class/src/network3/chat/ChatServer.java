@@ -19,7 +19,7 @@ public class ChatServer implements Runnable {
 			try{
 				Socket s = ss.accept();
 				System.out.println("Client 가 접속시도 :" + s );
-				ChatService cs = new ChatService(s);
+				ChatService cs = new ChatService(s); //각자 통신할 수 있도록 하기 위해서 socket을 만들어서 각각 chatservice에 전송해줌.
 				cs.start();
 				vc.add(cs);
 			
