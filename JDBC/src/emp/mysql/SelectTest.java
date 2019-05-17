@@ -9,8 +9,8 @@ import java.sql.Statement;
 public class SelectTest {
 
 	public static void main(String[] args) {
-		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url ="jdbc:oracle:thin:@192.168.0.117:1521:orcl";
+		String driver = "com.mysql.cj.jdbc.Driver";
+		String url ="jdbc:mysql://192.168.0.117:3306/test?serverTimezone=UTC&useSSL=false";
 		String user = "scott";
 		String pass = "tiger";
 		
@@ -36,7 +36,7 @@ public class SelectTest {
 			// 3. SQL 문장만들기
 		
 			//입력한 사원정보에서 이름 알아서 연봉은 60000달러 변경
-			String sql = "SELECT *FROM emp order by sal desc";
+			String sql = "SELECT *FROM temp order by sal desc";
 			
 			System.out.println(sql); 
 			// 4. SQL 전송객체 만들기
