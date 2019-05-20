@@ -1,0 +1,21 @@
+#### JDBC 연동 절차
+
+
+1. 해당 드라이버 메모리 로딩
+2. 연결객체 얻어오기
+3. sql 문장 만들기(*****)
+4. sql 전송 객체 얻어오기
+	- Statement : 완벽한 sql
+	- PreparedStatement : 미완성 sql
+	- CallableStatement : pl-sql의 procedure/function 호출시
+	
+5. sql 전송
+	- INSERT/DELETE/UPDATE / DDL : int executeUpdate()
+	- SELECT : ResultSet executeQuery()
+	
+6. 결과처리
+7. 닫기
+
+	
+		
+
