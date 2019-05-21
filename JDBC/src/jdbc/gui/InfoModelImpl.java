@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class InfoModelImpl {
+public class InfoModelImpl implements InfoModel {
 
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url ="jdbc:oracle:thin:@192.168.0.117:1521:orcl";

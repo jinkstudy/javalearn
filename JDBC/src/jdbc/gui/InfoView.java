@@ -36,8 +36,8 @@ class InfoView implements ActionListener{
 
 	//########################################
 	// 1. business logic를 실행하는 클래스 변수 선언
-	InfoModelImpl db = null;
-
+	InfoModelImpl db = null; //오라클
+	 //InfoMySQLImpl db = null; //MySQL
 
 
 
@@ -86,6 +86,7 @@ class InfoView implements ActionListener{
 		// 2. business logic 역할을 하는 클래스 객체 생성
 		try {
 			db = new InfoModelImpl();
+			//db = new InfoMySQLImpl();
 			ta.setText("정상");
 		} catch (Exception ex) {
 			ta.setText("현재 네트워크 오류가 발생하여 프로그램이 정상적으로 작동하지 않습니다.");
