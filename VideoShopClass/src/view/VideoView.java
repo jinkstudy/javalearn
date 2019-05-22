@@ -8,6 +8,9 @@ import javax.swing.border.*;
 import javax.swing.table.AbstractTableModel; 
 import javax.swing.text.TabExpander;
 
+import model.dao.VideoModel;
+import model.vo.Video;
+
 
 public class VideoView extends JPanel 
 {	
@@ -27,6 +30,13 @@ public class VideoView extends JPanel
 	
 	VideoTableModel tbModelVideo; // model 역할
 	
+	//******************
+	// 비지니스 로직 = 모델 클래스 변수 선언
+	
+	VideoModel db; // connect DB에서 모델 생성
+	
+	
+	
 	
 
 	//##############################################
@@ -39,7 +49,11 @@ public class VideoView extends JPanel
 	}
 	
 	public void connectDB(){	// DB연결
-		
+		try {
+			db = new VideoModel();
+		} catch (Exception e) {
+			System.out.println("드라이버 로딩 실패");
+		}
 	}
 	
 	//이벤트 처리
@@ -50,6 +64,52 @@ public class VideoView extends JPanel
 		bVideoModify.addActionListener(hdlr);
 		bVideoDelete.addActionListener(hdlr);
 		tfVideoSearch.addActionListener(hdlr);
+		
+		
+		//버튼핸들러에 들어있지 않은 액션 추가.
+		//이름 없는 method 생성
+		cbMultiInsert.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tfInsertCount.setEditable(cbMultiInsert.isSelected()); 
+				//체크박스가 체크되어 있다면, 수정가능하도록. 체크 안되어 있다면, 수정불가능하도록.
+			}
+		});
+		
+		// JTable 비디오 검색에서 클릭 했을 때, 
+		// JTable 클릭 이벤트가 액션 리스너에 등록되어 있지 않으므로, 마우스 이벤트를 걸어줘야한다.
+		
+		tableVideo.addMouseListener(new MouseAdapter() {
+		
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				int col = 0; //비디오 번호 
+				int row = tableVideo.getSelectedRow();
+				int vNum = (Integer)tableVideo.getValueAt(row, col);
+				//JOptionPane.showMessageDialog(null, vNum);
+				
+				// 1. 선택한 비디오 번호를 모델단의 selectByPK() 호출 시 인자로 보내기
+				Video vo;
+				try {
+					vo = db.selectByPk(vNum);
+					// 2. 넘겨 받은 Video에서 해당 값들 화면 출력하기
+					tfVideoNum.setText(String.valueOf(vo.getVideoNo()));
+					comVideoJanre.setSelectedItem(vo.getGenre());
+					tfVideoTitle.setText(vo.getVideoName());
+					tfVideoDirector.setText(vo.getDirector());
+					tfVideoActor.setText(vo.getActor());
+					taVideoContent.setText(vo.getExp());
+					
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "조회실패" + e1.getMessage());
+				}
+				
+				
+				
+			}
+		});
+		
 		
 	}		
 	
@@ -75,7 +135,24 @@ public class VideoView extends JPanel
 	
 	// 입고 클릭시  - 비디오 정보 등록
 	public void registVideo(){
-		 JOptionPane.showMessageDialog(null, "입고");
+		// JOptionPane.showMessageDialog(null, "입고");
+		
+		//1. 화면의 입력 및 선택 값들 얻어오기  -> Video 클래스 (VO)객체로 생성
+		Video vo = new Video();
+		vo.setGenre((String)comVideoJanre.getSelectedItem());
+		vo.setVideoName(tfVideoTitle.getText());
+		vo.setDirector(tfVideoDirector.getText());
+		vo.setActor(tfVideoActor.getText());
+		vo.setExp(taVideoContent.getText());
+		
+		int count = Integer.parseInt(tfInsertCount.getText());
+		
+		//2. 모델단의 메소드 1번 값들 전송
+		try {
+			db.insertVideo(vo, count);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "입고실패 : "  +e.getMessage());
+		}
 	
 	}
 	
@@ -98,7 +175,22 @@ public class VideoView extends JPanel
 	
 	// 비디오현황검색
 		public void searchVideo(){
-			JOptionPane.showMessageDialog(null, "검색");
+			//JOptionPane.showMessageDialog(null, "검색");
+			
+			int sel = comVideoSearch.getSelectedIndex();
+			String word = tfVideoSearch.getText();
+			try {
+				
+				// 검색결과를 화면 JTable의 내용을 담당하는 TableModel 안에 data에 지정
+				tbModelVideo.data = db.searchVideo(sel,word);
+				//내용이 바꼈다는 사실을 화면쪽에 정보를 줘야함.
+				tbModelVideo.fireTableDataChanged();
+				
+			} catch (Exception e) {
+				System.out.println("검색실패"+e.getMessage());
+			}
+			
+			
 		}
 		
 	
