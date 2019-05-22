@@ -56,7 +56,62 @@ public class RentView extends JPanel
 	
 	/*	객체 생성 및 화면 구성   */
 	void addLayout(){
-
+		//객체 생성
+		tfRentTel = new JTextField();
+		tfRentCustName = new JTextField();
+		tfRentVideoNum = new JTextField();
+		bRent = new JButton("대여");
+		
+		tfReturnVideoNum = new JTextField(15);
+		bReturn = new JButton("반납");
+		
+		rentTM = new RentTableModel();
+		tableRecentList = new JTable(rentTM);
+		
+		//화면 구성
+		
+		//위쪽
+		JPanel p_north = new JPanel();
+		p_north.setLayout(new GridLayout(1,2));
+		
+			//위쪽 - 왼쪽
+			JPanel p_north_west = new JPanel();
+			p_north_west.setBorder(new TitledBorder("대여"));
+			p_north_west.setLayout(new GridLayout(4,2));
+			p_north_west.add(new JLabel("전화번호"));
+			p_north_west.add(tfRentTel);
+			p_north_west.add(new JLabel("고객명"));
+			p_north_west.add(tfRentCustName);
+			p_north_west.add(new JLabel("비디오번호"));
+			p_north_west.add(tfRentVideoNum);
+			p_north_west.add(bRent);
+			
+			//위쪽 - 오른쪽
+			JPanel p_north_east = new JPanel();
+			p_north_east.setBorder(new TitledBorder("반납"));
+			p_north_east.add(new JLabel("비디오 번호"));
+			p_north_east.add(tfReturnVideoNum);
+			p_north_east.add(bReturn);
+			
+		// 위쪽 레이아웃	
+		p_north.add(p_north_west);
+		p_north.add(p_north_east);
+		
+		
+		
+		//센터
+		JPanel p_center = new JPanel();
+		
+		p_center.setLayout(new BorderLayout());
+		p_center.add(new JScrollPane(tableRecentList),BorderLayout.NORTH);
+		
+		
+		
+		//전체 붙이기
+		setLayout(new BorderLayout());
+		add(p_north,BorderLayout.NORTH);
+		add(p_center,BorderLayout.CENTER);
+		
 		
 	}
 

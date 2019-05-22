@@ -23,7 +23,7 @@ public class VideoShop extends JFrame
 			pane.addTab("비디오관리", video);
 			pane.addTab("대여관리", rent );
 
-			pane.setSelectedIndex(1); // default화면 지정 하는 것.
+			pane.setSelectedIndex(2); // default화면 지정 하는 것.
 
 			// 화면크기지정
 			add("Center", pane );
