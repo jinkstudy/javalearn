@@ -13,7 +13,7 @@ import model.vo.Video;
 public class VideoModel implements VideoDao{
 	
 	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url ="jdbc:oracle:thin:@192.168.0.43:1521:orcl";
+	String url ="jdbc:oracle:thin:@192.168.0.46:1521:orcl";
 	String user = "star";
 	String pass = "star";
 	
