@@ -43,6 +43,7 @@ public class RentView extends JPanel
 		addLayout();	//화면구성
 		eventProc();	//DB연결
 		connectDB();
+		selectNonReturn(); //화면에 뜨자마자 미납목록을 띄울 것.
 	}
 	
 	// DB 연결 --객체생성
@@ -80,8 +81,10 @@ public class RentView extends JPanel
 				selectCustName();
 			}else if(evt == bRent) {
 				rentVideo();
+				selectNonReturn();
 			}else if(evt == bReturn) {
 				returnVideo();
+				selectNonReturn();
 			}
 			
 		}
@@ -176,14 +179,34 @@ public class RentView extends JPanel
 			JOptionPane.showMessageDialog(null, "입력실패"+e.getMessage());
 		}
 		// 3. 대여 후 결과처리
+	
 		
-		
-		
-		
+	}
+	
+	public void selectNonReturn() {
+		try {
+			rentTM.data = db.selectList();
+			rentTM.fireTableDataChanged(); // 목록 가져온 후 데이터 변경됐다는 신호를 줌.
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "실패"+e.getMessage());
+		}
 	}
 	
 	// 전화번호 입력 후 엔터, 고객명 출력
 	public void selectCustName() {
+		String tel = tfRentTel.getText();
+		try {
+			
+			tfRentCustName.setText(db.selectCustName(tel)) ;
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "검색실패"+e.getMessage());
+		}
+		
 		
 		
 	}

@@ -11,4 +11,6 @@ public interface RentDao {
 	//미납정보 검색 메소드
 	public ArrayList selectList() throws Exception;
 	
+	public String selectCustName(String tel) throws Exception;
+	
 }

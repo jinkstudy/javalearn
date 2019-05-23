@@ -11,14 +11,15 @@ import model.vo.Customer;
 
 public class CustomerModel implements CustomerDao{
 
-	String driver = "oracle.jdbc.driver.OracleDriver";
+	//String driver = "oracle.jdbc.driver.OracleDriver";
 	String url ="jdbc:oracle:thin:@192.168.0.43:1521:orcl";
 	String user = "star";
 	String pass = "star";
 
 	public CustomerModel() throws Exception{
 		// 1. 드라이버로딩
-		Class.forName(driver);
+		//Class.forName(driver);
+		OracleCon.getInstance();
 
 	}
 
